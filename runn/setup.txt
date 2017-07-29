@@ -1,0 +1,15 @@
+This file describes the runtime NN dataflow server setup and operation
+-----------------------------------------------------------------------
+
+
+Process:
+ 0) server is setup to run apache2 and incron to monitor directories (start_server.sh)
+ 1) User loads webpage from server (uploadform.html)
+ 2) User selects a transform and an image to transform function (classify)
+ 3) User uploads image to server using html buttons
+ 4) Server script is called and places image in cgi-bin/uploads dir (uploadcgi.py)
+ 5) incron calls user handler when file is closed for writing (run_incron.py)
+ 6) Handler calls transform function in ML environment (classify.py, knn)
+ 7) transform compute results and places them in the cgi/results dir
+ 8) server script composes web page with user results
+ 9) done
